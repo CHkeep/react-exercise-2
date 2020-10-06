@@ -1,11 +1,12 @@
 import React from 'react';
 import Phone from './Phone';
+import './phone.scss';
 
 class Phones extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      phones: new Array(),
+      phones: [],
     };
   }
 
@@ -18,24 +19,50 @@ class Phones extends React.Component {
 
     const URL = 'http://localhost:3000/products';
     fetchData(URL)
-      .then((data) =>
+      .then((data) => {
+        const map = {};
+        data.forEach((d) => {
+          if (map[d.category]) {
+            map[d.category].push(d);
+          } else {
+            map[d.category] = [d];
+          }
+        });
+        const c = Object.keys(map);
+        const cs = [];
+        c.forEach((i) => {
+          cs.push({
+            title: i,
+            data: map[i],
+          });
+        });
+        console.log(cs);
         this.setState({
-          phones: data,
-        })
-      )
+          phones: cs,
+        });
+      })
       .catch((error) => console.log(error));
   }
 
   render() {
-    console.log(this.phones);
+    console.log(this.state.phones);
     return (
-      <div className="phones">
-        {this.state.phones &&
-          this.state.phones.map((phone) => (
-            <div className="phone" key={phone.name}>
-              <Phone array={phone} />
+      <div className="categary">
+        {this.state.phones.map((c) => {
+          console.log('c', c);
+          return (
+            <div key={c.title}>
+              <p className="title">{c.title}</p>
+              {c.data.map((phone) => {
+                return (
+                  <div className="phones" key={phone.name}>
+                    <Phone phone={phone} />
+                  </div>
+                );
+              })}
             </div>
-          ))}
+          );
+        })}
       </div>
     );
   }

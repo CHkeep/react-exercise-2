@@ -1,19 +1,25 @@
 import React from 'react';
+import './phone.scss';
+import URL from '../assets/product_image_placeholder.png';
+import { Button } from 'antd';
+import 'antd/dist/antd.css';
 
 class Phone extends React.Component {
   constructor(props) {
     super(props);
+    console.log(props);
     this.state = {
-      phone: this.props,
+      phone: {},
     };
   }
 
   render() {
     return (
-      <div key={this.phone.name}>
-        <p className="phoneName">{this.phone.name}</p>
-        <img src="../assets/product_image_placeholder.png" />
-        <p className="phoneMoney">{this.phone.money}</p>
+      <div key={this.props.phone.name} className="phone">
+        <p className="phoneName">{this.props.phone.name}</p>
+        <img src={URL} className="img" />
+        <span className="phoneMoney">{this.props.phone.price}</span>
+        <Button type="primary">add to cart</Button>
       </div>
     );
   }
