@@ -44,10 +44,22 @@ class Phones extends React.Component {
       .catch((error) => console.log(error));
   }
 
+  handleAdd = () => {
+    console.log('handleAdd');
+    this.setState({
+      value: this.state.value + 1,
+    });
+  };
+
+  sumCounters = () => {
+    this.state.counters.reduce((acc, counter) => (acc += counter.value), 0);
+  };
+
   render() {
     console.log(this.state.phones);
     return (
       <div className="categary">
+        {/* <span>Sum:{this.sumCounters()}</span> */}
         {this.state.phones.map((c) => {
           console.log('c', c);
           return (
@@ -56,7 +68,11 @@ class Phones extends React.Component {
               {c.data.map((phone) => {
                 return (
                   <div className="phones" key={phone.name}>
-                    <Phone phone={phone} />
+                    <Phone
+                      phone={phone}
+                      key={phone.name}
+                      // handleAdd={this.handleAdd}
+                    />
                   </div>
                 );
               })}

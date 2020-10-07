@@ -19,7 +19,7 @@ class Phone extends React.Component {
         <p className="phoneName">{this.props.phone.name}</p>
         <img src={URL} className="img" />
         <span className="phoneMoney">{this.props.phone.price}</span>
-        <Button type="primary">add to cart</Button>
+        <Button type="primary" onClick={this.props.handleAdd}>add to cart</Button>
       </div>
     );
   }
