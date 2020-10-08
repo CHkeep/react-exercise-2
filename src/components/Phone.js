@@ -14,6 +14,7 @@ class Phone extends React.Component {
   }
 
   render() {
+    // console.log(this.props.phone)
     return (
       <div key={this.props.phone.name} className="phone">
         <p className="phoneName">{this.props.phone.name}</p>

@@ -7,6 +7,7 @@ class Phones extends React.Component {
     super(props);
     this.state = {
       phones: [],
+      value: 0,
     };
   }
 
@@ -51,15 +52,11 @@ class Phones extends React.Component {
     });
   };
 
-  sumCounters = () => {
-    this.state.counters.reduce((acc, counter) => (acc += counter.value), 0);
-  };
-
   render() {
     console.log(this.state.phones);
     return (
       <div className="categary">
-        {/* <span>Sum:{this.sumCounters()}</span> */}
+        <span>Sum:{this.state.value}</span>
         {this.state.phones.map((c) => {
           console.log('c', c);
           return (
@@ -71,7 +68,7 @@ class Phones extends React.Component {
                     <Phone
                       phone={phone}
                       key={phone.name}
-                      // handleAdd={this.handleAdd}
+                      handleAdd={this.handleAdd}
                     />
                   </div>
                 );
