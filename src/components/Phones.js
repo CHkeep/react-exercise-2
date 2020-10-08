@@ -1,4 +1,5 @@
 import React from 'react';
+import { ShoppingCartOutlined } from '@ant-design/icons';
 import Phone from './Phone';
 import './phone.scss';
 
@@ -56,7 +57,15 @@ class Phones extends React.Component {
     console.log(this.state.phones);
     return (
       <div className="categary">
-        <span>Sum:{this.state.value}</span>
+        <div>
+          <div className="header">
+            <span>Store</span>
+            <div className="icons-list">
+              <ShoppingCartOutlined />
+              <span className="sum">{this.state.value}</span>
+            </div>
+          </div>
+        </div>
         {this.state.phones.map((c) => {
           console.log('c', c);
           return (
